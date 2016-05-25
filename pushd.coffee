@@ -38,13 +38,13 @@ if settings.server?.ping?
         setInterval fn, time, args...
 
     interval 60000, ->
-        logger.verbose "Sending ping to redis"
+        logger.verbose "Sending PING to redis"
         redis.ping (err, res) ->
             if err
-                logger.verbose "Received error response from redis ping #{err.message} - Closing connection"
+                logger.verbose "Received error from redis ping #{err.message} - Closing connection"
                 redis.end()
             else
-                logger.verbose "Sending ping to redis"
+                logger.verbose "Got PONG from redis"
 
 createSubscriber = (fields, cb) ->
     logger.verbose "creating subscriber proto = #{fields.proto}, token = #{fields.token}"
